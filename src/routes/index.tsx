@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
+import { UserButton } from "@/components/User-button";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -58,11 +59,14 @@ function HomePage() {
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
         className={cn("flex flex-col gap-4")}
       >
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Dummy App</h1>
-          <p className="mt-1 text-sm text-zinc-400">
-            Minimal template wired up with Better Auth + Convex.
-          </p>
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Dummy App</h1>
+            <p className="mt-1 text-sm text-zinc-400">
+              Minimal template wired up with Better Auth + Convex.
+            </p>
+          </div>
+          <UserButton />
         </div>
 
         <motion.section

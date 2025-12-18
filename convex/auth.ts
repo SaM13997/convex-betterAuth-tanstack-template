@@ -5,12 +5,20 @@ import { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 import { betterAuth } from "better-auth";
 
-const siteUrl = process.env.SITE_URL!;
+const siteUrl = process.env.SITE_URL ?? "http://localhost:3000"; // Fallback to localhost for dev
 const googleClientId = process.env.GOOGLE_CLIENT_ID!;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET!;
 
+console.log("SITE_URL", siteUrl);
 console.log("GOOGLE_CLIENT_ID", googleClientId);
 console.log("GOOGLE_CLIENT_SECRET", googleClientSecret);
+
+if (!process.env.SITE_URL) {
+  console.warn(
+    "SITE_URL is not set in environment variables! Using fallback: http://localhost:3000. " +
+    "This may cause 'invalid_code' errors if your frontend is running on a different port or if the Google Cloud Console redirect URI is not configured for this origin."
+  );
+}
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
